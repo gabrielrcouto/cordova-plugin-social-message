@@ -74,6 +74,13 @@
         [exclusions addObject: UIActivityTypeSaveToCameraRoll];
     }
 
+    //iOS 8 + iPad Fix
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+        UIButton* invisibleShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        invisibleShareButton.bounds = CGRectMake(0 ,0, 0, 0);
+        activity.popoverPresentationController.sourceView = invisibleShareButton;
+    }
+
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
         if (![activityTypes containsObject:@"AddToReadingList"])
